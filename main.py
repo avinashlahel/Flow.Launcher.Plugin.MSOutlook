@@ -2,8 +2,6 @@ import os
 import sys
 from datetime import datetime, timedelta
 
-import win32com.client
-
 parent_folder_path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(parent_folder_path)
 sys.path.append(os.path.join(parent_folder_path, 'lib'))
@@ -12,13 +10,12 @@ sys.path.append(os.path.join(parent_folder_path, 'plugin'))
 from flowlauncher import FlowLauncher
 import webbrowser
 
+import win32com.client
+
 
 class MSOutlook(FlowLauncher):
     def query(self, query):
-        if query.strip().lower() == "mt":
-            return self.get_today_meetings()
-
-        return []
+        return self.get_today_meetings()
 
     def get_today_meetings(self):
         outlook = win32com.client.Dispatch("Outlook.Application")
@@ -57,7 +54,7 @@ class MSOutlook(FlowLauncher):
             results.append({
                 "Title": item.Subject,
                 "SubTitle": f"{time_status} ({item.Start.strftime('%H:%M')} - {item.End.strftime('%H:%M')})",
-                "IcoPath": "Images/ol.png",
+                "IcoPath": "Images/cal.png",
                 "JsonRPCAction": {
                     "method": "open_selected_meeting",
                     "parameters": [item.EntryID],

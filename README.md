@@ -1,3 +1,4 @@
-This is an example Python plugin project which demonstrates the interaction of request from Flow and then call back to the plugin.
+Microsoft Outlook Integration from within FlowLauncher.
+The plugin expects to have a local installation of Microsoft Outlook
 
-You can install this plugin via `pm install Hello World Python`
+You can install this plugin via `pm install Microsoft Outlook`

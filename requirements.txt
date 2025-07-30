@@ -1,2 +1,2 @@
 flowlauncher
-pywin32
+pywin32==311

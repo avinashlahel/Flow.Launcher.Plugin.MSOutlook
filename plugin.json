@@ -1,12 +1,12 @@
 {
-    "ID": "2f4e384e-76ce-45c3-aea2-b16f5e5c328f",
-    "ActionKeyword": "hp",
-    "Name": "Hello World Python",
-    "Description": "Python Hello World example plugin",
-    "Author": "Flow Launcher",
+    "ID": "145a1033-354c-4728-9334-e27848ac529f",
+    "ActionKeyword": "ol",
+    "Name": "Microsoft Outlook",
+    "Description": "Outlook Integration for FlowLauncher",
+    "Author": "Avinash Lahel",
     "Version": "1.0.0",
     "Language": "python",
-    "Website": "https://github.com/Flow-Launcher/Flow.Launcher.Plugin.HelloWorldPython",
-    "IcoPath": "Images\\app.png",
+    "Website": "https://github.com/avinashlahel/Flow.Launcher.Plugin.MSOutlook",
+    "IcoPath": "Images\\ol.png",
     "ExecuteFileName": "main.py"
 }

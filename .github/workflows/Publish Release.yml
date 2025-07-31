@@ -33,6 +33,9 @@ jobs:
       - name: Compress Plugin
         run: Compress-Archive -Path * -DestinationPath Flow.Launcher.Plugin.MSOutlook.zip
         shell: pwsh
+      - name: List ZIP file
+        run: Get-ChildItem -Path . -Filter *.zip
+        shell: pwsh
       - name: Publish
         if: success()
         uses: softprops/action-gh-release@v1

@@ -9,16 +9,16 @@ on:
 
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       python_ver: 3.11
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python ${{ env.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ env.python-version }}
       - name: get version
         id: version
         uses: notiz-dev/github-action-json-property@release
@@ -30,12 +30,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r ./requirements.txt -t ./lib
-      - name: Compress Plugin
-        run: Compress-Archive -Path * -DestinationPath Flow.Launcher.Plugin.MSOutlook.zip
-        shell: pwsh
-      - name: List ZIP file
-        run: Get-ChildItem -Path . -Filter *.zip
-        shell: pwsh
+          cp ./lib/pywin32_system32/pythoncom311.dll .
+          cp ./lib/pywin32_system32/pywintypes311.dll .
+          zip -r Flow.Launcher.Plugin.MSOutlook.zip . -x '*.git*'
       - name: Publish
         if: success()
         uses: softprops/action-gh-release@v1

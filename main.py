@@ -3,9 +3,20 @@ import sys
 from datetime import datetime, timedelta
 
 parent_folder_path = os.path.abspath(os.path.dirname(__file__))
-sys.path.append(parent_folder_path)
 sys.path.append(os.path.join(parent_folder_path, 'lib'))
 sys.path.append(os.path.join(parent_folder_path, 'plugin'))
+sys.path.append(parent_folder_path)
+
+# If pywin32 is vendored, add its DLL folder to the search path before importing win32com
+pywin32_system32 = os.path.join(parent_folder_path, 'lib', 'pywin32_system32')
+if os.path.isdir(pywin32_system32):
+    try:
+        # Python 3.8+: preferred way
+        os.add_dll_directory(pywin32_system32)
+    except Exception:
+        # Fallback: prepend to PATH
+        os.environ["PATH"] = pywin32_system32 + os.pathsep + os.environ.get("PATH", "")
+
 
 from flowlauncher import FlowLauncher
 import webbrowser
